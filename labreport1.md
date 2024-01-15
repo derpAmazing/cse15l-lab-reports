@@ -16,18 +16,23 @@ The command cd stands for **change directory**. By this, we can quickly assume t
 ## No arguments
 No arguments means that we enter just `cd` into the terminal with nothing else at all.
 Starting from the directory /home/lecture1/messages, we can see that before entering the command, our line looks like this:
+
 ```[user@sahara ~/lecture1/messages]$ cd```
 
 After entering the command, our line changes to this:
+
 ```[user@sahara ~]$ ```
 
 The same thing happens when we enter `cd` from /home/lecture1, where we go from: 
+
 ```[user@sahara ~/lecture1]$ cd```
 
 to:
+
 ```[user@sahara ~]$ ```
 
 This shows us that typing `cd` without any arguments returns us to the home directory. We can confirm this by using `pwd` - print working directory, which would tell us that after the `cd` command is executed, we are always returned to the /home directory:
+
 ```
 [user@sahara ~/lecture1/messages]$ cd
 [user@sahara ~]$ pwd
