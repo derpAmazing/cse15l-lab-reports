@@ -12,9 +12,9 @@ In particular, this lab report will detail and show examples of what happens whe
 The directory used in this lab report is [here]https://github.com/ucsd-cse15l-f23/lecture1
 
 # Command: `cd`
-The command cd stands for **change directory**. By this, we can quickly assume that normally, a path to a directory is one that should be passed into the command.
+The command cd stands for **change directory**. By this, we can quickly assume that normally a path to a directory is one that should be passed into the command.
 ## No arguments
-This means that we enter just `cd` into the terminal with nothing else at all.
+No arguments means that we enter just `cd` into the terminal with nothing else at all.
 Starting from the directory /home/lecture1/messages, we can see that before entering the command, our line looks like this:
 ```[user@sahara ~/lecture1/messages]$ cd```
 
