@@ -9,7 +9,7 @@ In particular, this lab report will detail and show examples of what happens whe
 2. When a path to a directory is passed into the command
 3. When a path to a file is passed into the command
 
-The directory used in this lab report is [here]https://github.com/ucsd-cse15l-f23/lecture1
+The directory used in this lab report is [here](https://github.com/ucsd-cse15l-f23/lecture1)
 
 # Command: `cd`
 The command cd stands for **change directory**. By this, we can quickly assume that normally a path to a directory is one that should be passed into the command.
