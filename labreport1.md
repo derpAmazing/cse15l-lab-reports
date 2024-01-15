@@ -115,7 +115,7 @@ Here, nothing is blue and everything is 'normal' in color. As we can see, using 
 
 Another thing to note is that files are colored black, while directories are colored blue when using `ls`.
 
-This is **not** an error and it is an intended functionality of the `ls` command to print the contents of the current working directory when no arguments are provided.
+This is **not** an error and it is an intended functionality of the `ls` command to print the contents of the current working directory when no arguments are provided as the system interprets it as the user asking for a list of the current working directory.
 
 ## Argument: Path to a directory
 In this case, a path to a directory is passed into `ls`. Starting from `/home`, we try to enter the path to `/lecture1/messages` into the ls command.
@@ -156,6 +156,123 @@ As we can see, when we try to pass a file's path into `ls`, it basically just re
 This is **not** an error - it still prints an appropriate output, but it definitely does seem useless.
 
 # Command: `cat`
+The `cat` command stands for concatenate - which means to 'join' strings or text together. It is harder to guess what this does by it's name, so let's try to see what happens in our 3 cases.
 ## No arguments
+Typing just `cat` into the terminal with no arguments has an interesting result. Here, we start from `/home`.
+
+```
+[user@sahara ~]$ cat
+
+```
+
+It seemingly removes the `[user@sahara ~]` portion and prompts us to type on the empty space. What happens if we do that?
+
+```
+[user@sahara ~]$ cat
+hi
+hi
+Hello
+Hello
+This is a test of the cat command!
+This is a test of the cat command!
+```
+
+Interestingly, typing the cat command without any arguments let's us type whatever we want into blank space and the terminal will then print back to us exactly what we wrote. This happens regardless of what directory we are in and what files are in that directory - the cat command simply makes us enter a 'repeat back' mode.
+
+This is **not** an error and is likely a feature implemented for when for some reason, the user decides that they want to output a purely user-typed message into the terminal (though I'm not sure why they wouldn't just use `echo <message>` instead). I struggled a bit with figuring out how to exit this mode, but I've found that clicking CTRL + C or CTRL + D works to return to the normal mode.
+
 ## Argument: Path to a directory
+What happens if we pass the path to a directory into the `cat` command? Let's see! Starting from the `/home` directory, we attempt to pass the `/home/lecture1` directory into the command.
+
+```
+[user@sahara ~]$ cat lecture1
+cat: lecture1: Is a directory
+```
+
+The terminal simply tells us that `lecture1` is a directory - not a file. There is no way for the `cat` command to concatenate a directory as there is nothing to concatenate! This **is** an error message - the `cat` command cannot work with a directory at all.
+
 ## Argument: Path to a file
+So now that we know the `cat` command cannot work with a directory, what happens if we pass a file? Starting from the `/home` directory, we attempt to pass `Hello.java` into the command using its path `/home/lecture1/Hello.java`
+
+```
+[user@sahara ~]$ cat lecture1/Hello.java
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+public class Hello {
+  public static void main(String[] args) throws IOException {
+    String content = Files.readString(Path.of(args[0]), StandardCharsets.UTF_8);    
+    System.out.println(content);
+  }
+}
+```
+
+These are the contents of the Hello.java file! Let's experiment a bit more. What happens if we try this on two files? Starting from the `/home` directory, we pass two arguments in: the path for `Hello.java` and the path for the `en-us.txt` file in `messages`
+
+```
+[user@sahara ~]$ cat lecture1/Hello.java lecture1/messages/en-us.txt 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+public class Hello {
+  public static void main(String[] args) throws IOException {
+    String content = Files.readString(Path.of(args[0]), StandardCharsets.UTF_8);    
+    System.out.println(content);
+  }
+}Hello World!
+```
+
+How about three files? We add the path for `es-mx.txt` in the `messages` directory onto it!
+
+```
+[user@sahara ~]$ cat lecture1/Hello.java lecture1/messages/en-us.txt lecture1/messages/es-mx.txt 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+public class Hello {
+  public static void main(String[] args) throws IOException {
+    String content = Files.readString(Path.of(args[0]), StandardCharsets.UTF_8);    
+    System.out.println(content);
+  }
+}Hello World!
+¡Hola Mundo!
+```
+
+We can see here that the `cat` command prints out the contents of the file whose path is passed into it. Additionally, when multiple files are given, the `cat` command concatenates them - 'joining' the texts - together. We can string more than just two files together using the `cat` command as well! This is the standard functionality of the `cat` command - displaying and, as its name suggests, concatenating the contents of files together and outputting them into the terminal. When only one file is specified, it just outputs the contents of that one file with nothing to concatenate together. With more than one file, it concatenates the contents of all the files.
+
+This is **not** an error - it is the intended functionality of the `cat` command.
+
+Let's try a small experiment. What if we try using `cat` on a `.class` file? More specifically, the `Hello.class` file located in the `lecture1` directory.
+
+```
+[user@sahara ~]$ cat lecture1/Hello.class 
+����A2
+
+java/lang/Object<init>()java/lang/String
+
+
+
+
+java/nio/file/Pathof;(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;
+!java/nio/charset/StandardCharsetsUTF_8Ljava/nio/charse
+t/Charset;
+
+java/nio/file/Files
+readStringB(Ljava/nio/file/Path;Ljava/nio/charset/Charset;)Ljava/lang/String;
+ java/lang/SystemoutLjava/io/PrintStream;
+"#$
+%&java/io/PrintStreamprintln(Ljava/lang/String;)V(HelloCodeLineNumberTablemain([Ljava/lang/String;)V
+Exceptions/java/io/IOException
+SourceFile
+Hello.java!')*��*+,)9*2����L�
+```
+
+The `cat` command still outputs the contents of the file, but it is relatively illegible. This is because `Hello.class` is a binary file that is created after the Java Compiler compiles the `Hello.java` file. It has content, sure, and the `cat` command can still output that. However, it is meant for the computer to read and interpret. Interestingly, we can still see some remnants of the code in the `Hello.java` file here. 
+
+This is still **not** an error - just a weird application of the command.
