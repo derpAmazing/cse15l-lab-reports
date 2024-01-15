@@ -3,6 +3,7 @@ Week 1's lab report is a blog post detailing the use of 3 filesystem commands th
 - `cd`
 - `ls`
 - `cat`
+
 In particular, this lab report will detail and show examples of what happens when certain types of arguments are passed into these commands, namely:
 1. When no arguments are passed into the command
 2. When a path to a directory is passed into the command
