@@ -39,9 +39,9 @@ class ChatServer {
 ```
 ## First Add Message
 ![Image](firstAddMessage.png)
-Methods called: The ```contains```, ```getQuery```, and ```split``` method are called.
+Methods called: The ```getPath```,```contains```, ```getQuery```, and ```split``` method are called.
 Relevant arguments:
-- To the contains method, we pass in "/add-message"
+- To the contains method, we pass in "/add-message", which is our only path (aside from the default that I've left in)
 - To getQuery, we don't pass in any arguments
 - To split, we pass in "&" or "=" depending on what how we need to split the queries/query pieces to obtain the username or message
 Fields:
@@ -51,7 +51,7 @@ Fields:
 ![Image](secondAddMessage.png)
 Methods called: The ```contains```, ```getQuery```, and ```split``` method are called.
 Relevant arguments:
-- To the contains method, we pass in "/add-message"
+- To the contains method, again we pass in "/add-message"
 - To getQuery, we don't pass in any arguments
 - To split, we pass in "&" or "=" depending on what how we need to split the queries/query pieces to obtain the username or message
 Fields:
@@ -69,7 +69,4 @@ The Absolute Path: ```C:\Users\jerem\.ssh\id_rsa.pub```
 ![Image](noPassword.png)
 
 # Part 3
-The most interesting thing I've learned by far in these weeks is how URLs are formatted and how websites process these URLs into paths, queries, and even parts of a query in order to process a great number of different things. I've noticed now how google searches happen through the same format that our simplistic programs run on, where you have a path then a query that is split and processed. In google's case, it's search?q=<search>&<something>. 
-
-
-
+The most interesting thing I've learned by far in these weeks is how URLs are formatted and how websites process these URLs into paths, queries, and even parts of a query in order to process a great number of different things. I've noticed now how google searches happen through the same format that our simplistic programs run on, where you have a path then a query that is split and processed. In google's case, it's search?q=SEARCHTERM&SOMEOTHERSTUFF. 
