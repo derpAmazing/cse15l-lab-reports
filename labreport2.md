@@ -41,9 +41,10 @@ class ChatServer {
 ![Image](firstAddMessage.png)
 Methods called: The ```getPath```,```contains```, ```getQuery```, and ```split``` method are called.
 Relevant arguments:
-- To the contains method, we pass in "/add-message", which is our only path (aside from the default that I've left in)
-- To getQuery, we don't pass in any arguments
-- To split, we pass in "&" or "=" depending on what how we need to split the queries/query pieces to obtain the username or message
+- To the contains method, we pass in "/add-message", which is our only path (aside from the default "/" that I've left in)
+- To the getPath method, we just pass in "/" to check whether it's the default path or the only other path which is "/add-message"
+- To getQuery, we don't pass in any arguments as it just retrieves everything after ?
+- To split, we pass in "&" or "=" depending on what how we need to split the queries/query pieces to obtain the username or message. Here I use "&" first to split the query into the message part and the user part.
 Fields:
 - The chat field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format. Here it is updated with ```"jeremy: hi\n"```
 - As the chat field was empty before, the chat field now becomes the same as what we added which is "jeremy: hi\n".
@@ -52,9 +53,11 @@ Fields:
 Methods called: The ```contains```, ```getQuery```, and ```split``` method are called.
 Relevant arguments:
 - To the contains method, again we pass in "/add-message"
-- To getQuery, we don't pass in any arguments
-- To split, we pass in "&" or "=" depending on what how we need to split the queries/query pieces to obtain the username or message
+- To the getPath method, we just pass in "/" to check whether it's the default path or the only other path which is "/add-message"
+- To getQuery, we don't pass in any arguments as it just retrieves everything after ?
+- To split, we pass in "&" or "=" depending on what how we need to split the queries/query pieces to obtain the username or message. Here I use "&" first to split the query into the message part and the user part.
 Fields:
+- The Handler class only has one field which is ```chat`` - the chat so far.
 - The chat field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format. Here it is updated with ```"another guy: hi how are you doing!\n"```
 - The chat field is now updated and the formatted string before is added on top, becoming: ```"jeremy: hi\n another guy: hi how are you doing!\n"```
 
