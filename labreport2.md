@@ -68,7 +68,7 @@ Relevant arguments:
 - To split, we pass in "&" or "=" depending on what how we need to split the queries/query pieces to obtain the username or message. Here I use "&" first to split the query into the message part and the user part.
 
 Fields:
-- The Handler class only has one field which is ```chat`` - the chat so far.
+- The Handler class only has one field which is ```chat``` - the chat so far.
 - The chat field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format. Here it is updated with ```"another guy: hi how are you doing!\n"```
 - The chat field is now updated and the formatted string before is added on top, becoming: ```"jeremy: hi\n another guy: hi how are you doing!\n"```
 
