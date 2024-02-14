@@ -2,7 +2,9 @@
 ## The Code of ChatServer
 
 Note that since this is noted in the lab report instructions:
+
 > You can assume that the s= parameter always comes before the user= parameter, and they are always separated by a & as shown above.
+
 We do not have to check the elements of ```parameters``` for the correct ```"s="``` and ```"user="``` format.
 
 ```
