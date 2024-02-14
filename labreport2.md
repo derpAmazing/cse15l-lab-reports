@@ -47,6 +47,8 @@ class ChatServer {
 
 ## First Add Message
 
+We enter using the path ```/add-message?s=hi&user=jeremy```
+
 ![Image](firstAddMessage.png)
 
 Methods called: The ```handleRequest```, ```contains```, ```getPath```, ```getQuery```, and ```split``` method are called.
@@ -66,6 +68,8 @@ The ```chat``` field is updated here with the username and message obtained from
 - The chat field goes from ```""``` to ```jeremy: hi\n"```
 
 ## Second Add Message
+
+We enter using the path ```/add-message?s=hi how are you doing!&user=another guy```
 
 ![Image](secondAddMessage.png)
 
