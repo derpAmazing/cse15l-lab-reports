@@ -1,4 +1,4 @@
-# Part 1 - ChatServer
+![image](https://github.com/derpAmazing/cse15l-lab-reports/assets/99420039/c4f18ba2-4b02-478c-99df-85775981d7c3)# Part 1 - ChatServer
 ## The Code of ChatServer
 
 Note that since this is noted in the lab report instructions:
@@ -62,7 +62,9 @@ Relevant arguments:
 - ```url.getQuery().split("&")```, ```parameters[0].split("=")```, ```parameters[1].split("=")``` - To the ```split``` method called from either the query we obtain from ```url.getQuery()``` or the two parts of the initial split we do, we pass in ```"&"``` or ```"="``` depending on what how we need to split the queries/query pieces to obtain the username or message. For example, we use ```split``` with ```"&"``` to first separate between the ```message``` part and the ```username``` part. Then we use ```split``` with ```"="``` to obtain the actual ```message``` and ```username```.
 
 Fields:
-The ```chat``` field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format.
+
+The ```chat``` field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format. 
+
 - Here it begins as an empty string: ```""``` as there was no previous input - the server just started!
 - Then it is updated to become ```"jeremy: hi\n"``` after the request is handled by the ```handleRequest``` method and all the various methods above are called. ```"jeremy"``` is obtained as the username, and ```"hi"``` is obtained as the message. Then it is formatted into ```"jeremy: hi\n"``` and appended to the ```chat``` variable. The ```handleRequest``` method then returns the ```chat``` variable, which is displayed as the chat so far.
 - The chat field goes from ```""``` to ```jeremy: hi\n"```
@@ -86,7 +88,9 @@ Relevant arguments:
 - ```url.getQuery().split("&")```, ```parameters[0].split("=")```, ```parameters[1].split("=")``` - To the ```split``` method called from either the query we obtain from ```url.getQuery()``` or the two parts of the initial split we do, we pass in ```"&"``` or ```"="``` depending on what how we need to split the queries/query pieces to obtain the username or message. For example, we use ```split``` with ```"&"``` to first separate between the ```message``` part and the ```username``` part. Then we use ```split``` with ```"="``` to obtain the actual ```message``` and ```username```.
 
 Fields:
+
 The ```chat``` field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format.
+
 - Here it begins as the string from before: ```"jeremy: hi\n"```
 - Then it is updated to become with ```"another guy: hi how are you doing!\n"``` to become: ```"jeremy: hi\n another guy: hi how are you doing!\n"``` after the request is handled by the ```handleRequest``` method and all the various methods above are called. ```"another guy"``` is obtained as the username, and ```"hi how are you doing!"``` is obtained as the message. Then it is formatted into ```"another guy: hi how are you doing!\n"``` and appended to the ```chat``` variable. The ```handleRequest``` method then returns the ```chat``` variable, which is displayed as the chat so far.
 - The chat field goes from ```"jeremy: hi\n"``` to ```"jeremy: hi\n another guy: hi how are you doing!\n"```
@@ -95,13 +99,13 @@ The ```chat``` field is updated here with the username and message obtained from
 ## The absolute path to the private key for your SSH key for logging into ieng6
 ![Image](privateKeyPath.png)
 
-The Absolute Path: ```C:\Users\jerem\.ssh\id_rsa```
+The Absolute Path of the Private Key: ```C:\Users\jerem\.ssh\id_rsa```
 
 ## The absolute path to the public key for your SSH key for logging into ieng6
 
 ![Image](publicKeyPath.png)
 
-The Absolute Path: ```C:\Users\jerem\.ssh\id_rsa.pub```
+The Absolute Path: On the ieng6 server using my UCSD account ```/home/linux/ieng6/oce/82/jel125/.ssh/authorized_keys```
 
 ## Logging in without a password
 
