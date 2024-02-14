@@ -1,5 +1,10 @@
 # Part 1 - ChatServer
 ## The Code of ChatServer
+
+Note that since this is noted in the lab report instructions:
+> You can assume that the s= parameter always comes before the user= parameter, and they are always separated by a & as shown above.
+We do not have to check the elements of ```parameters``` for the correct ```"s="``` and ```"user="``` format.
+
 ```
 import java.io.IOException;
 import java.net.URI;
@@ -37,40 +42,48 @@ class ChatServer {
     }
 }
 ```
+
 ## First Add Message
 
 ![Image](firstAddMessage.png)
 
-Methods called: The ```getPath```,```contains```, ```getQuery```, and ```split``` method are called.
+Methods called: The ```handleRequest```, ```contains```, ```getPath```, ```getQuery```, and ```split``` method are called.
 
 Relevant arguments:
 
-- To the contains method, we pass in "/add-message", which is our only path (aside from the default "/" that I've left in)
-- To the getPath method, we just pass in "/" to check whether it's the default path or the only other path which is "/add-message"
-- To getQuery, we don't pass in any arguments as it just retrieves everything after ?
-- To split, we pass in "&" or "=" depending on what how we need to split the queries/query pieces to obtain the username or message. Here I use "&" first to split the query into the message part and the user part.
+- ```handleRequest()``` is first called, taking in the ```url```.
+- ```url.getPath()``` - To the ```getPath``` method called from ```url```, we just pass in no arguments. This method returns the path of the ```url``` we enter, which we chain with other methods below.
+- ```url.getPath().contains``` - To the ```contains``` method called from the path we obtain from ```url.getPath()```, we pass in ```"/add-message"```, which is our only implemented path (aside from the default ```"/"``` that I've left in). This checks whether the path is the appropriate ```"/add-message"``` to add a message to our overall ```chat``` variable.
+- ```url.getQuery()``` - To ```getQuery``` called from ```url```, we don't pass in any arguments as it just retrieves everything after ```?``` - the query of the ```url```. We chain this with the ```split``` method below.
+- ```url.getQuery().split("&")```, ```parameters[0].split("=")```, ```parameters[1].split("=")``` - To the ```split``` method called from either the query we obtain from ```url.getQuery()``` or the two parts of the initial split we do, we pass in ```"&"``` or ```"="``` depending on what how we need to split the queries/query pieces to obtain the username or message. For example, we use ```split``` with ```"&"``` to first separate between the ```message``` part and the ```username``` part. Then we use ```split``` with ```"="``` to obtain the actual ```message``` and ```username```.
 
 Fields:
-- The chat field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format. Here it is updated with ```"jeremy: hi\n"```
-- As the chat field was empty before, the chat field now becomes the same as what we added which is "jeremy: hi\n".
+The ```chat``` field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format.
+- Here it begins as an empty string: ```""``` as there was no previous input - the server just started!
+- Then it is updated to become ```"jeremy: hi\n"``` after the request is handled by the ```handleRequest``` method and all the various methods above are called. ```"jeremy"``` is obtained as the username, and ```"hi"``` is obtained as the message. Then it is formatted into ```"jeremy: hi\n"``` and appended to the ```chat``` variable. The ```handleRequest``` method then returns the ```chat``` variable, which is displayed as the chat so far.
+- The chat field goes from ```""``` to ```jeremy: hi\n"```
 
 ## Second Add Message
 
 ![Image](secondAddMessage.png)
 
-Methods called: The ```contains```, ```getQuery```, and ```split``` method are called.
+The methods called and the arguments passed in are basically identical to the first time we added a message to the chat, but the field ```chat``` starts, ends and is updated with a different value. The obtained ```username``` and ```message``` are also different.
+
+Methods called: The ```handleRequest```, ```contains```, ```getPath```, ```getQuery```, and ```split``` method are called.
 
 Relevant arguments:
 
-- To the contains method, again we pass in "/add-message"
-- To the getPath method, we just pass in "/" to check whether it's the default path or the only other path which is "/add-message"
-- To getQuery, we don't pass in any arguments as it just retrieves everything after ?
-- To split, we pass in "&" or "=" depending on what how we need to split the queries/query pieces to obtain the username or message. Here I use "&" first to split the query into the message part and the user part.
+- ```handleRequest()``` is first called, taking in the ```url```.
+- ```url.getPath()``` - To the ```getPath``` method called from ```url```, we just pass in no arguments. This method returns the path of the ```url``` we enter, which we chain with other methods below.
+- ```url.getPath().contains``` - To the ```contains``` method called from the path we obtain from ```url.getPath()```, we pass in ```"/add-message"```, which is our only implemented path (aside from the default ```"/"``` that I've left in). This checks whether the path is the appropriate ```"/add-message"``` to add a message to our overall ```chat``` variable.
+- ```url.getQuery()``` - To ```getQuery``` called from ```url```, we don't pass in any arguments as it just retrieves everything after ```?``` - the query of the ```url```. We chain this with the ```split``` method below.
+- ```url.getQuery().split("&")```, ```parameters[0].split("=")```, ```parameters[1].split("=")``` - To the ```split``` method called from either the query we obtain from ```url.getQuery()``` or the two parts of the initial split we do, we pass in ```"&"``` or ```"="``` depending on what how we need to split the queries/query pieces to obtain the username or message. For example, we use ```split``` with ```"&"``` to first separate between the ```message``` part and the ```username``` part. Then we use ```split``` with ```"="``` to obtain the actual ```message``` and ```username```.
 
 Fields:
-- The Handler class only has one field which is ```chat``` - the chat so far.
-- The chat field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format. Here it is updated with ```"another guy: hi how are you doing!\n"```
-- The chat field is now updated and the formatted string before is added on top, becoming: ```"jeremy: hi\n another guy: hi how are you doing!\n"```
+The ```chat``` field is updated here with the username and message obtained from using split to split the query into pieces and formatted in the required format.
+- Here it begins as the string from before: ```"jeremy: hi\n"```
+- Then it is updated to become with ```"another guy: hi how are you doing!\n"``` to become: ```"jeremy: hi\n another guy: hi how are you doing!\n"``` after the request is handled by the ```handleRequest``` method and all the various methods above are called. ```"another guy"``` is obtained as the username, and ```"hi how are you doing!"``` is obtained as the message. Then it is formatted into ```"another guy: hi how are you doing!\n"``` and appended to the ```chat``` variable. The ```handleRequest``` method then returns the ```chat``` variable, which is displayed as the chat so far.
+- The chat field goes from ```"jeremy: hi\n"``` to ```"jeremy: hi\n another guy: hi how are you doing!\n"```
 
 # Part 2
 ## The absolute path to the private key for your SSH key for logging into ieng6
