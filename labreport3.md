@@ -68,6 +68,7 @@ static void reverseInPlace(int[] arr) {
 The command I want to research here is the ```find``` command. All the information came from the website tldr.sh, which is a useful, shortened version of the ```man``` page for each command. You can find the webpage for the find command [here](https://tldr.inbrowser.app/pages/common/find)
 
 ## Command Option 1 - ```-name```
+
 ```
 jerem@LAPTOP-RQSID7KS MINGW64 ~/downloads/docsearch/technical (main)
 $ find . -name 'chapter*'
@@ -91,5 +92,37 @@ $ find . -name 'chapter*'
 
 The -name command line option allows us to find all files that match a certain pattern. Here, we search for all files that start with 'chapter'. This is obviously useful when we are trying to get a list of all files that start, end, or just contain a certain string pattern at all.
 
-## Command Option 2 - ```
+## Command Option 2 - ```type```
+
+```
+jerem@LAPTOP-RQSID7KS MINGW64 ~/downloads/docsearch/technical (main)
+$ find . -type d
+.
+./911report
+./biomed
+./government
+./government/About_LSC
+./government/Alcohol_Problems
+./government/Env_Prot_Agen
+./government/Gen_Account_Office
+./government/Media
+./government/Post_Rate_Comm
+./plos
+```
+
+The ```-type``` command line option allows us to find all directories/files/contents of a directory that match a certain type. For example, here I search for all directories under technical. This is useful if you want to find something inside a directory of a certain type, for example, files only or directories only.
+
+## Command Option 3 - Passing the results of find into other commands
+
+```
+jerem@LAPTOP-RQSID7KS MINGW64 ~/downloads/docsearch/technical (main)
+$ find . | wc
+   1402    1402   43252
+```
+
+Using the ```|``` modifier, we can pass the output of find into other commands. Here, I pass it into ```wc```, which counts the lines, words, and characters in all the names of the files and directories under technical. This is useful for chaining commands together when we need to pass all the contents of a directory or just those that match our specifiers into another command.
+
+## Command Option 4 - Using the ```path``` modifier
+```
+
 
