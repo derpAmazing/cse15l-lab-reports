@@ -1,4 +1,4 @@
-![image](https://github.com/derpAmazing/cse15l-lab-reports/assets/99420039/c4f18ba2-4b02-478c-99df-85775981d7c3)# Part 1 - ChatServer
+# Part 1 - ChatServer
 ## The Code of ChatServer
 
 Note that since this is noted in the lab report instructions:
