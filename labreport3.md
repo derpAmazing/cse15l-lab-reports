@@ -97,7 +97,7 @@ $ find . -name 'chapter*'
 ./911report/chapter-9.txt
 ```
 
-Using find to find all java files (files with the ```.java``` extension)
+Using ```find``` to find all java files (files with the ```.java``` extension)
 
 ```
 jerem@LAPTOP-RQSID7KS MINGW64 ~/Downloads/docsearch (main)
@@ -110,6 +110,8 @@ $ find . -name '*.java'
 The -name command line option allows us to find all files that match a certain pattern in their name. Here, we search for all files that start with 'chapter' and also all java files - files that have the ```.java``` file extension. This is useful when we are trying to get a list of all files sorted by a certain pattern in their name, including their file extensions.
 
 ## Command Option 2 - ```type```
+
+Using ```find``` to find all directories
 
 ```
 jerem@LAPTOP-RQSID7KS MINGW64 ~/downloads/docsearch/technical (main)
@@ -126,6 +128,8 @@ $ find . -type d
 ./government/Post_Rate_Comm
 ./plos
 ```
+
+Using ```find``` to find all files under ```./technical/911report/```
 
 ```
 jerem@LAPTOP-RQSID7KS MINGW64 ~/Downloads/docsearch (main)
@@ -151,64 +155,74 @@ $ find ./technical/911report/ -type f
 
 The ```-type``` command line option allows us to limit what the type of object ```find``` attempts to find - directories/files/contents. For example, here I search for all objects that are directories using the ```-type d``` flag. Then I use ```-type f``` to find all objects that are files (and not directories). This is useful if you want to find something inside a directory of a certain type, for example, files only or directories only.
 
-## Command Option 3 - Passing the results of find into other commands
+## Command Option 3 - ```maxdepth```
+
+Using ```find``` to find everything up to a max recursive depth of 1
 
 ```
-jerem@LAPTOP-RQSID7KS MINGW64 ~/downloads/docsearch/technical (main)
-$ find . | wc
-   1402    1402   43252
-```
-
-```
-jerem@LAPTOP-RQSID7KS MINGW64 ~/downloads/docsearch/technical (main)
-$ find . -name chapter* | xargs wc
-    731   19260  119387 ./911report/chapter-1.txt
-    603    6064   47910 ./911report/chapter-10.txt
-    817    9414   71968 ./911report/chapter-11.txt
-   1539   15623  129126 ./911report/chapter-12.txt
-   1089   10689   90943 ./911report/chapter-13.1.txt
-   1236   14348  111804 ./911report/chapter-13.2.txt
-   1718   19349  152185 ./911report/chapter-13.3.txt
-   2941   34343  268853 ./911report/chapter-13.4.txt
-   3237   37985  294230 ./911report/chapter-13.5.txt
-    948   10539   80751 ./911report/chapter-2.txt
-   3159   33834  267519 ./911report/chapter-3.txt
-   1204   13004  100212 ./911report/chapter-5.txt
-   1898   19381  150961 ./911report/chapter-6.txt
-   1579   17276  129949 ./911report/chapter-7.txt
-   1036   11324   85871 ./911report/chapter-8.txt
-   1885   19748  151529 ./911report/chapter-9.txt
-  25620  292181 2253198 total
-```
-
-Using the ```|``` modifier, we can pass the output of find into other commands. Here, I pass it into ```wc```, which counts the lines, words, and characters in all the names of the files and directories under technical. This is useful for chaining commands together when we need to pass all the contents of a directory or just those that match our specifiers into another command.
-
-## Command Option 4 - ```-maxdepth```
-```
-jerem@LAPTOP-RQSID7KS MINGW64 ~/downloads/docsearch/technical (main)
-$ find -maxdepth 1 -type d
+jerem@LAPTOP-RQSID7KS MINGW64 ~/Downloads/docsearch (main)
+$ find . -maxdepth 1
 .
-./911report
-./biomed
-./government
-./plos
+./.git
+./DocSearchServer.java
+./lib
+./README.md
+./Server.java
+./technical
+./TestDocSearch.java
 ```
 
+Using ```find``` to find everything up to a max recursive depth of 2
+
 ```
-jerem@LAPTOP-RQSID7KS MINGW64 ~/downloads/docsearch/technical (main)
-$ find -maxdepth 2 -type d
+jerem@LAPTOP-RQSID7KS MINGW64 ~/Downloads/docsearch (main)
+$ find . -maxdepth 2
 .
-./911report
-./biomed
-./government
-./government/About_LSC
-./government/Alcohol_Problems
-./government/Env_Prot_Agen
-./government/Gen_Account_Office
-./government/Media
-./government/Post_Rate_Comm
-./plos
+./.git
+./.git/config
+./.git/description
+./.git/HEAD
+./.git/hooks
+./.git/index
+./.git/info
+./.git/logs
+./.git/objects
+./.git/packed-refs
+./.git/refs
+./DocSearchServer.java
+./lib
+./lib/hamcrest-core-1.3.jar
+./lib/junit-4.13.2.jar
+./README.md
+./Server.java
+./technical
+./technical/911report
+./technical/biomed
+./technical/government
+./technical/plos
+./TestDocSearch.java
 ```
 
-The ```-maxdepth``` command line option allows one to only search up to a certain depth in a directory. For example, if we use ```-maxdepth 1```, we will only search in the current directory. Using ```-maxdepth 2``` searches in the current directory, and only in the directories directly under the current directory. This is useful if you only want to search through certain directories in terms of depth.
+The ```find``` command recursively finds everything under all the directories of the directory we direct the command to. Using the ```maxdepth``` modifier allows us to limit how far the command searches by specifying a max recursive depth using the modifier. Here, I first search for everything up to a max recursive depth of 1, then up to a max recursive depth of 2.
 
+## Command Option 4 - ```empty```
+
+Using ```find``` to find all files that are empty (no content)
+
+```
+jerem@LAPTOP-RQSID7KS MINGW64 ~/Downloads/docsearch (main)
+$ find . -empty
+./.git/objects/info
+./.git/refs/tags
+./technical/911report/emptyfile.txt
+```
+
+Using ```find``` to find all **text** files that are empty (no content)
+
+```
+jerem@LAPTOP-RQSID7KS MINGW64 ~/Downloads/docsearch (main)
+$ find . -empty -name '*.txt'
+./technical/911report/emptyfile.txt
+```
+
+The ```empty``` modifier allows us to specify that we want the ```find``` command to only find files that are empty, meaning it has no content and has a size of 0 bytes. Here, I find all files that are empty, then use a previous modifier, ```name``` to specify that I want to find text files that are empty.
