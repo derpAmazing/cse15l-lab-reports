@@ -56,4 +56,10 @@ Here, I added all the files to the list of files for ```git``` to track, then co
 
 ![Image](lab7step9p1.png)
 
+Then I copied my authentication token from github and did:
 
+Keys pressed: ```g i t <space> p u s h <enter> d e r p A m a z i n g <enter> <CTRL> V <enter>```
+
+This pushed my changes to my repository.
+
+![Image](lab7step9p2.png)
