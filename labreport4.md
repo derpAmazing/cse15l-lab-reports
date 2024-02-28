@@ -1,4 +1,4 @@
-![image](https://github.com/derpAmazing/cse15l-lab-reports/assets/99420039/196595d3-1f3b-4082-b35b-078abbbb2406)# Step 4 - Log into ```ieng6```
+# Step 4 - Log into ```ieng6```
 
 Keys pressed: ```<up> <up> <enter>```
 
